@@ -29,7 +29,7 @@ namespace Vista_Login
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("SqlConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -64,6 +64,8 @@ namespace Vista_Login
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapAreaControllerRoute("Usuario", "Usuario", "{controller=Usuario}/{action=ViewUsuario}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
