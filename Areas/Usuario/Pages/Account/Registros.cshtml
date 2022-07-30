@@ -1,5 +1,5 @@
 ﻿@page "/Usuario/Registro"
-@model Vista_Login.Areas.Usuario.Pages.Account.RegistrosModel
+@model RegistrosModel
 @{
     ViewData["Title"] = "Registrar";
 }
@@ -9,41 +9,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="~/css/Style.css">
-
-    <title>Transparent form</title>
+    <title>Registros</title>
 </head>
 
 <body>
+
     <div class="container">
         <div class="form">
             <div class="btn">
                 <button class="signUpBtn">SIGN UP</button>
             </div>
-            <form class="signUp" action="" method="get">
+
+            <form class="signUp" method="post">
                 <div class="formGroup">
-                    <input type="text" id="userName" placeholder="User Name" autocomplete="off">
+                    <input  asp-for="Input.Name" id="userName" placeholder="User Name" required autocomplete="off">
+                    <span asp-validation-for="Input.Name" class="text-danger"></span>
                 </div>
                 <div class="formGroup">
-                    <input type="email" placeholder="Email ID" name="email" required autocomplete="off">
+                    <input asp-for="Input.Mail" placeholder="Email ID" required autocomplete="off">
+                    <span asp-validation-for="Input.Mail" class="text-danger"></span>
                 </div>
                 <div class="formGroup">
-                    <input type="password" id="password" placeholder="Password" required autocomplete="off">
+                    <input asp-for="Input.Password" id="password" placeholder="Password" required autocomplete="off">
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
                 <div class="formGroup">
-                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required autocomplete="off">
+                    <input asp-for="Input.ConfirmPassword" id="confirmPassword" placeholder="Confirm Password" required autocomplete="off">
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                 </div>
                 <div class="checkBox">
                     <input type="checkbox" name="checkbox" id="checkbox">
                     <span class="text">I agree with term & conditions</span>
                 </div>
-                <div class="checkBox">
-                    <input type="checkbox" name="checkbox" id="checkbox">
-                    <span class="text">Do you have an account?</span>
-                </div>
-                <div class="formGroup">
-                    <button type="button" class="btn2">REGISTER</button>
-                </div>
 
+                <p class="forget">Do you have an account? <a class="" asp-area="Usuario" asp-controller="Usuario" asp-action="ViewUsuario">Sign up</a></p>
+
+                <div class="formGroup">
+                    <button type="submit" class="btn2">REGISTER</button>
+                </div>
             </form>
 
             <!------ Login Form -------- -->
@@ -68,6 +71,8 @@
 
         </div>
     </div>
-
 </body>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
 

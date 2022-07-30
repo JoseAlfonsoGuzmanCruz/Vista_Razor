@@ -17,18 +17,20 @@
             <div class="btn">
                 <button class="loginBtn">LOG IN</button>
             </div>
-            <form class="signUp" action="" method="get">
-                
-                <div class="formGroup">
-                    <input type="email" placeholder="Email ID" name="email" required autocomplete="off">
+            <form class="signUp" action="" method="post">
+                @*<div class="formGroup">
+                    <input type="email" asp-for="" placeholder="Email ID" name="email" required autocomplete="off">
+                    <span asp-validation-for="Input.Name" class="text-danger"></span>
                 </div>
+
                 <div class="formGroup">
-                    <input type="password" id="password" placeholder="Password" required autocomplete="off">
-                </div>
-                
-                
+                    <input type="password" asp-for="" id="password" placeholder="Password" required autocomplete="off">
+                    <span asp-validation-for="Input.Name" class="text-danger"></span>
+                </div>*@
+
+
                 <div class="formGroup">
-                    <button type="button" class="btn2">REGISTER</button>
+                    <button type="submit" class="btn2">REGISTER</button>
                 </div>
 
             </form>
