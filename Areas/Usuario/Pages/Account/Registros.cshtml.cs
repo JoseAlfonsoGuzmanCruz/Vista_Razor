@@ -12,13 +12,16 @@ namespace Vista_Login.Areas.Usuario.Pages.Account
     public class RegistrosModel : PageModel
     {
         private UserManager<IdentityUser> userManager;
-
+        private SignInManager<IdentityUser> signInManager;
 
         private static InputModel _input = null;
         //contructor para usar al modelo de la migracion
-        public RegistrosModel(UserManager<IdentityUser> userManager)
+        public RegistrosModel(
+            UserManager<IdentityUser> userManager,
+            SignInManager<IdentityUser> signInManager)
         {
             this.userManager = userManager;
+            this.signInManager = signInManager;
         }
         public void OnGet()
         {
@@ -58,7 +61,7 @@ namespace Vista_Login.Areas.Usuario.Pages.Account
         {
             if(await RegisterUserAsync())
             {
-                return Redirect("/Principal/Principal?area=Principal");
+                return Redirect("/Principal/ViewPrincipal?area=Principal");
             }
             else
             {
@@ -83,6 +86,8 @@ namespace Vista_Login.Areas.Usuario.Pages.Account
                     var result = await userManager.CreateAsync(user, Input.Password);
                     if (result.Succeeded)
                     {
+                        //variable de session
+                        await signInManager.SignInAsync(user, isPersistent: false);
                         run = true;
                     }
                     else

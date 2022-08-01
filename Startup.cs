@@ -66,6 +66,7 @@ namespace Vista_Login
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 //ruta de acceso a la area usuario
                 endpoints.MapAreaControllerRoute("Usuario", "Usuario", "{controller=Usuario}/{action=ViewUsuario}/{id?}");
+                endpoints.MapAreaControllerRoute("Principal", "Principal", "{controller=Principal}/{action=ViewPrincipal}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
